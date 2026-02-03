@@ -1,0 +1,250 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Score Calculator</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css"
+      integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@400..800&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="./styles.css/style.css" />
+  </head>
+  <body>
+    <section class="animation-wrapper"></section>
+
+    <header>
+      <nav>
+        <ul>
+          <li><a href="#">Home</a></li>
+          <li><a href="#">Grade Analysis</a></li>
+          <li><a href="#">Terms of Service</a></li>
+        </ul>
+      </nav>
+    </header>
+
+    <main>
+      <section class="main-part">
+        <h1>Grade Input Form</h1>
+
+        <div class="buttons">
+          <button class="sort-descending">Descending</button>
+          <button class="sort-ascending">Ascending</button>
+        </div>
+
+        <div class="all-inputs">
+          <form>
+            <div class="grader">
+              <input
+                type="text"
+                list="courses"
+                placeholder="class category"
+                class="class-category"
+              />
+              <input
+                type="text"
+                placeholder="class number"
+                class="class-number"
+              />
+              <input
+                type="number"
+                min="0"
+                max="6"
+                placeholder="credits"
+                class="class-credits"
+              />
+              <select name="select" class="select">
+                <option value="">-- Select grade --</option>
+
+                <option value="A+">A+</option>
+                <option value="A">A</option>
+                <option value="A-">A-</option>
+
+                <option value="B+">B+</option>
+                <option value="B">B</option>
+                <option value="B-">B-</option>
+
+                <option value="C+">C+</option>
+                <option value="C">C</option>
+                <option value="C-">C-</option>
+
+                <option value="D+">D+</option>
+                <option value="D">D</option>
+                <option value="D-">D-</option>
+
+                <option value="F">F</option>
+              </select>
+
+              <button class="trash-btn">
+                <i class="fas fa-trash-alt"></i>
+              </button>
+            </div>
+          </form>
+
+          <form>
+            <div class="grader">
+              <input
+                type="text"
+                list="courses"
+                placeholder="class category"
+                class="class-category"
+              />
+              <input
+                type="text"
+                placeholder="class number"
+                class="class-number"
+              />
+              <input
+                type="number"
+                min="0"
+                max="6"
+                placeholder="credits"
+                class="class-credits"
+              />
+              <select name="select" class="select">
+                <option value="">-- Select grade --</option>
+
+                <option value="A+">A+</option>
+                <option value="A">A</option>
+                <option value="A-">A-</option>
+
+                <option value="B+">B+</option>
+                <option value="B">B</option>
+                <option value="B-">B-</option>
+
+                <option value="C+">C+</option>
+                <option value="C">C</option>
+                <option value="C-">C-</option>
+
+                <option value="D+">D+</option>
+                <option value="D">D</option>
+                <option value="D-">D-</option>
+
+                <option value="F">F</option>
+              </select>
+
+              <button class="trash-btn">
+                <i class="fas fa-trash-alt"></i>
+              </button>
+            </div>
+          </form>
+
+          <form>
+            <div class="grader">
+              <input
+                type="text"
+                list="courses"
+                placeholder="class category"
+                class="class-category"
+              />
+              <input
+                type="text"
+                placeholder="class number"
+                class="class-number"
+              />
+              <input
+                type="number"
+                min="0"
+                max="6"
+                placeholder="credits"
+                class="class-credits"
+              />
+              <select name="select" class="select">
+                <option value="">-- Select grade --</option>
+
+                <option value="A+">A+</option>
+                <option value="A">A</option>
+                <option value="A-">A-</option>
+
+                <option value="B+">B+</option>
+                <option value="B">B</option>
+                <option value="B-">B-</option>
+
+                <option value="C+">C+</option>
+                <option value="C">C</option>
+                <option value="C-">C-</option>
+
+                <option value="D+">D+</option>
+                <option value="D">D</option>
+                <option value="D-">D-</option>
+
+                <option value="F">F</option>
+              </select>
+
+              <button class="trash-btn">
+                <i class="fas fa-trash-alt"></i>
+              </button>
+            </div>
+          </form>
+        </div>
+      </section>
+
+      <datalist id="courses">
+        <!-- IT / CS -->
+        <option value="Computer Science"></option>
+        <option value="Information Technology"></option>
+        <option value="Software Engineering"></option>
+        <option value="Data Science"></option>
+        <option value="Artificial Intelligence"></option>
+        <option value="Cyber Security"></option>
+
+        <!-- Engineering -->
+        <option value="Mechanical Engineering"></option>
+        <option value="Electrical Engineering"></option>
+        <option value="Civil Engineering"></option>
+        <option value="Chemical Engineering"></option>
+
+        <!-- Business -->
+        <option value="Business Administration"></option>
+        <option value="Accounting"></option>
+        <option value="Finance"></option>
+        <option value="Marketing"></option>
+
+        <!-- Design / Arts -->
+        <option value="UI/UX Design"></option>
+        <option value="Graphic Design"></option>
+        <option value="Digital Media"></option>
+
+        <!-- Science -->
+        <option value="Mathematics"></option>
+        <option value="Physics"></option>
+        <option value="Biotechnology"></option>
+
+        <!-- Others -->
+        <option value="Information Systems"></option>
+        <option value="Project Management"></option>
+      </datalist>
+    </main>
+
+    <footer>
+      <div>
+        <h2>Questions</h2>
+        <ul>
+          <li><a>Step by Step Guide</a></li>
+          <li><a>FAQs</a></li>
+          <li><a>Report Problems</a></li>
+          <li><a>Term of Services</a></li>
+        </ul>
+      </div>
+      <div>
+        <h2>About us</h2>
+        <ul>
+          <li><a>About Author</a></li>
+          <li><a>Donation</a></li>
+          <li><a>Git Hub</a></li>
+          <li><a>Learn Programming</a></li>
+          <li><a>Contact Us</a></li>
+        </ul>
+      </div>
+    </footer>
+  </body>
+</html>

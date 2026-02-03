@@ -1,0 +1,8 @@
+body nav ul {
+  display: flex;
+  flex-wrap: wrap;
+  list-style: none;
+}
+body nav ul li {
+  text-decoration: none;
+}/*# sourceMappingURL=style.css.map */

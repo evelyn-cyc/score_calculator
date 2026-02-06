@@ -25,3 +25,7 @@ time_line
     "-=1.2",
   )
   .fromTo(animation, 0.3, { opacity: 1 }, { opacity: 0 });
+
+setTimeout(() => {
+  animation.style.pointerEvents = "none";
+}, 2500);

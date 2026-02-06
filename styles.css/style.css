@@ -76,6 +76,9 @@ body header nav ul li a {
 body header nav ul li a:hover {
   color: yellow;
 }
+body main {
+  padding-bottom: 3rem;
+}
 body main section.main-part {
   padding: 1rem;
   display: flex;
@@ -140,6 +143,30 @@ body main div.result p {
 body main div.result h2#result-gpa {
   font-size: 3.5rem;
   font-weight: bold;
+}
+body footer {
+  background-color: black;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  padding: 2rem;
+}
+body footer div {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 1rem 5rem;
+}
+body footer div h2 {
+  font-size: 1.5rem;
+}
+body footer div ul {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+body footer div ul li a:hover {
+  cursor: pointer;
 }
 
 @keyframes border_color {

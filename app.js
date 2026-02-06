@@ -23,4 +23,5 @@ time_line
     { x: "-100%" },
     { x: "0%", ease: Power2.easeInOut },
     "-=1.2",
-  );
+  )
+  .fromTo(animation, 0.3, { opacity: 1 }, { opacity: 0 });

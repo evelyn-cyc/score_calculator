@@ -12,4 +12,5 @@ time_line
     1.2,
     { width: "80%" },
     { width: "100%", ease: Power2.easeInOut },
-  );
+  )
+  .fromTo(slider, 1, { x: "-100%" }, { x: "0%", ease: Power2.easeInOut });

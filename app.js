@@ -40,12 +40,12 @@ window.addEventListener("keypress", (e) => {
 });
 
 // Avoid all buttons submit the form after clicking
-let allButton = document.querySelectorAll("button");
-allButton.forEach((button) => {
-  button.addEventListener("click", (e) => {
-    e.preventDefault();
-  });
-});
+// let allButton = document.querySelectorAll("button");
+// allButton.forEach((button) => {
+//   button.addEventListener("click", (e) => {
+//     e.preventDefault();
+//   });
+// });
 
 // After choosing Option in Select, change into the corresponding colors
 // let allSelect = document.querySelectorAll("select");
@@ -176,16 +176,43 @@ function setGPA() {
 
 // Clone the form while clicking plus button
 let plusBtn = document.querySelector(".plus-btn");
-let forms = document.querySelectorAll("form");
 
 plusBtn.addEventListener("click", function () {
-  let newForm = forms[0].cloneNode(true);
+  let form = document.querySelector("form");
+  let formContainer = document.querySelector(".all-inputs");
+  let newForm = form.cloneNode(true);
 
-  newForm.querySelectorAll("input, select").forEach((element) => {
+  // newForm.querySelectorAll("input, select").forEach((element) => {
+  //   element.value = "";
+  //   element.style.backgroundColor = "";
+  // });
+  cleanForm(newForm);
+
+  formContainer.appendChild(newForm);
+  newForm.style.animation = "scaleUp 0.5s ease forwards";
+});
+
+// Trash bin delete the form
+allInputsContainer.addEventListener("click", (e) => {
+  let trashBtn = e.target.closest(".trash-btn");
+  if (!trashBtn) return;
+
+  let graderForm = e.target.closest("form");
+  if (!graderForm) return;
+
+  console.log(graderForm);
+  if (document.querySelectorAll(".all-inputs > form").length > 1) {
+    graderForm.remove();
+  } else {
+    cleanForm(graderForm);
+  }
+
+  setGPA();
+});
+
+function cleanForm(graderForm) {
+  graderForm.querySelectorAll("input, select").forEach((element) => {
     element.value = "";
     element.style.backgroundColor = "";
   });
-
-  forms[forms.length - 1].appendChild(newForm);
-  newForm.style.animation = "scaleUp 0.5s ease forwards";
-});
+}

@@ -52,6 +52,15 @@ let allSelect = document.querySelectorAll("select");
 allSelect.forEach((select) => {
   select.addEventListener("change", (e) => {
     changeColor(e.target); // e.target is <select>
+    setGPA();
+  });
+});
+
+// Once changing credits, change GPA immediately
+let allCredits = document.querySelectorAll(".class-credits");
+allCredits.forEach((credit) => {
+  credit.addEventListener("change", () => {
+    setGPA();
   });
 });
 
@@ -90,4 +99,66 @@ function changeColor(target) {
   } else {
     target.style.backgroundColor = "white";
   }
+}
+
+function converter(grade) {
+  switch (grade) {
+    case "A+":
+      return 4.0;
+    case "A":
+      return 4.0;
+    case "A-":
+      return 3.7;
+    case "B+":
+      return 3.4;
+    case "B":
+      return 3.0;
+    case "B-":
+      return 2.7;
+    case "C+":
+      return 2.4;
+    case "C":
+      return 2.0;
+    case "C-":
+      return 1.7;
+    case "D+":
+      return 1.4;
+    case "D":
+      return 1.0;
+    case "D-":
+      return 0.7;
+    case "F":
+      return 0.0;
+    default:
+      return 0;
+  }
+}
+
+function setGPA() {
+  let formLength = document.querySelectorAll("form").length;
+  let credits = document.querySelectorAll(".class-credits");
+  let selects = document.querySelectorAll("select");
+  let sum = 0;
+  let creditSum = 0;
+
+  for (let i = 0; i < credits.length; i++) {
+    if (!isNaN(credits[i].valueAsNumber)) {
+      creditSum += credits[i].valueAsNumber;
+    }
+  }
+
+  for (let i = 0; i < formLength; i++) {
+    if (!isNaN(credits[i].valueAsNumber)) {
+      sum += credits[i].valueAsNumber * converter(selects[i].value);
+    }
+  }
+
+  let result = 0.0;
+  if (creditSum === 0) {
+    result = 0.0;
+  } else {
+    result = sum / creditSum;
+  }
+
+  document.getElementById("result-gpa").innerText = result.toFixed(2);
 }

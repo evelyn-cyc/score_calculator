@@ -187,4 +187,5 @@ plusBtn.addEventListener("click", function () {
   });
 
   forms[forms.length - 1].appendChild(newForm);
+  newForm.style.animation = "scaleUp 0.5s ease forwards";
 });

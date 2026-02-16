@@ -48,20 +48,35 @@ allButton.forEach((button) => {
 });
 
 // After choosing Option in Select, change into the corresponding colors
-let allSelect = document.querySelectorAll("select");
-allSelect.forEach((select) => {
-  select.addEventListener("change", (e) => {
+// let allSelect = document.querySelectorAll("select");
+// allSelect.forEach((select) => {
+//   select.addEventListener("change", (e) => {
+//     changeColor(e.target); // e.target is <select>
+//     setGPA();
+//   });
+// });
+
+// Handle changes from any select—old or new (Attach one listener to a parent that exists forever)
+let allInputsContainer = document.querySelector(".all-inputs");
+allInputsContainer.addEventListener("change", (e) => {
+  if (e.target.matches("select")) {
     changeColor(e.target); // e.target is <select>
     setGPA();
-  });
+  }
 });
 
 // Once changing credits, change GPA immediately
-let allCredits = document.querySelectorAll(".class-credits");
-allCredits.forEach((credit) => {
-  credit.addEventListener("change", () => {
+// let allCredits = document.querySelectorAll(".class-credits");
+// allCredits.forEach((credit) => {
+//   credit.addEventListener("change", () => {
+//     setGPA();
+//   });
+// });
+
+allInputsContainer.addEventListener("change", (e) => {
+  if (e.target.matches(".class-credits")) {
     setGPA();
-  });
+  }
 });
 
 function changeColor(target) {
@@ -89,11 +104,7 @@ function changeColor(target) {
   ) {
     target.style.backgroundColor = "red";
     target.style.color = "black";
-  } else if (
-    target.value === "E+" ||
-    target.value === "E" ||
-    target.value === "E-"
-  ) {
+  } else if (target.value === "F") {
     target.style.backgroundColor = "grey";
     target.style.color = "black";
   } else {
@@ -162,3 +173,18 @@ function setGPA() {
 
   document.getElementById("result-gpa").innerText = result.toFixed(2);
 }
+
+// Clone the form while clicking plus button
+let plusBtn = document.querySelector(".plus-btn");
+let forms = document.querySelectorAll("form");
+
+plusBtn.addEventListener("click", function () {
+  let newForm = forms[0].cloneNode(true);
+
+  newForm.querySelectorAll("input, select").forEach((element) => {
+    element.value = "";
+    element.style.backgroundColor = "";
+  });
+
+  forms[forms.length - 1].appendChild(newForm);
+});

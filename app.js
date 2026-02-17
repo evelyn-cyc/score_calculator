@@ -182,10 +182,6 @@ plusBtn.addEventListener("click", function () {
   let formContainer = document.querySelector(".all-inputs");
   let newForm = form.cloneNode(true);
 
-  // newForm.querySelectorAll("input, select").forEach((element) => {
-  //   element.value = "";
-  //   element.style.backgroundColor = "";
-  // });
   cleanForm(newForm);
 
   formContainer.appendChild(newForm);
@@ -200,14 +196,20 @@ allInputsContainer.addEventListener("click", (e) => {
   let graderForm = e.target.closest("form");
   if (!graderForm) return;
 
-  console.log(graderForm);
   if (document.querySelectorAll(".all-inputs > form").length > 1) {
-    graderForm.remove();
+    graderForm.style.animation = "scaleDown 0.5s ease forwards";
+    graderForm.addEventListener(
+      "animationend",
+      () => {
+        graderForm.remove();
+        setGPA();
+      },
+      { once: true },
+    );
   } else {
     cleanForm(graderForm);
+    setGPA();
   }
-
-  setGPA();
 });
 
 function cleanForm(graderForm) {

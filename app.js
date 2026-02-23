@@ -174,7 +174,7 @@ function setGPA() {
   document.getElementById("result-gpa").innerText = result.toFixed(2);
 }
 
-// Clone the form while clicking plus button
+// Clone the form while clicking plus button --------------------------
 let plusBtn = document.querySelector(".plus-btn");
 
 plusBtn.addEventListener("click", function () {
@@ -188,7 +188,7 @@ plusBtn.addEventListener("click", function () {
   newForm.style.animation = "scaleUp 0.5s ease forwards";
 });
 
-// Trash bin delete the form
+// Trash bin delete the form ------------------------------------------
 allInputsContainer.addEventListener("click", (e) => {
   let trashBtn = e.target.closest(".trash-btn");
   if (!trashBtn) return;
@@ -217,4 +217,54 @@ function cleanForm(graderForm) {
     element.value = "";
     element.style.backgroundColor = "";
   });
+}
+
+// Sorting -----------------------------------------------------------
+let desBtn = document.querySelector(".sort-descending");
+let asBtn = document.querySelector(".sort-ascending");
+
+desBtn.addEventListener("click", () => {
+  handleSorting("descending");
+});
+
+asBtn.addEventListener("click", () => {
+  handleSorting("ascending");
+});
+
+function handleSorting(direction) {
+  let graders = document.querySelectorAll(".grader");
+  let objectArray = [];
+
+  // Put forms with data into an Object array
+  for (let i = 0; i < graders.length; i++) {
+    let class_name = graders[i].querySelector(".class-category").value;
+    let class_number = graders[i].querySelector(".class-number").value;
+    let class_credit = graders[i].querySelector(".class-credits").value;
+    let class_grade = graders[i].querySelector(".select").value;
+
+    if (
+      !(
+        class_name == "" &&
+        class_number == "" &&
+        class_credit == "" &&
+        class_grade == ""
+      )
+    ) {
+      let class_object = {
+        class_name,
+        class_number,
+        class_credit,
+        class_grade,
+      };
+      objectArray.push(class_object);
+    }
+  }
+
+  // Convert grade into the grade number and put it as the new attribute into the object
+  for (let i = 0; i < objectArray.length; i++) {
+    objectArray[i]["class_grade_number"] = converter(
+      objectArray[i].class_grade,
+    );
+  }
+  console.log(objectArray);
 }

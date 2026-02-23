@@ -231,6 +231,7 @@ asBtn.addEventListener("click", () => {
   handleSorting("ascending");
 });
 
+// Organize the objectArray which includes the converted grade number
 function handleSorting(direction) {
   let graders = document.querySelectorAll(".grader");
   let objectArray = [];
@@ -266,25 +267,25 @@ function handleSorting(direction) {
       objectArray[i].class_grade,
     );
   }
+
+  objectArray = mergeSort(objectArray);
+  if (direction == "descending") objectArray.reverse();
   console.log(objectArray);
 }
 
 // Split the array into two until it has only one remaining
-function mergeSort(arr, direction) {
+function mergeSort(arr) {
   if (arr.length <= 1) return arr;
 
   let middleIndex = Math.floor(arr.length / 2);
-  let leftArr = arr.slice(middleIndex);
-  let rightArr = arr.slice(0, middleIndex);
-  console.log(rightArr, leftArr);
+  let rightArr = arr.slice(middleIndex);
+  let leftArr = arr.slice(0, middleIndex);
 
-  leftArr = mergeSort(leftArr);
-  rightArr = mergeSort(rightArr);
-  return merge(leftArr, rightArr, direction);
+  return merge(mergeSort(leftArr), mergeSort(rightArr));
 }
 
 // Merge the array according to its value, and list with the certain direction
-function merge(a1, a2, direction) {
+function merge(a1, a2) {
   result = [];
 
   let i = 0;
@@ -292,7 +293,7 @@ function merge(a1, a2, direction) {
 
   // Compare and put the smaller one into the array until one of them finish
   while (i < a1.length && j < a2.length) {
-    if (a1[i] < a2[j]) {
+    if (a1[i].class_grade_number < a2[j].class_grade_number) {
       result.push(a1[i]);
       i++;
     } else {
@@ -312,8 +313,6 @@ function merge(a1, a2, direction) {
     result.push(a2[j]);
     j++;
   }
-
-  if (direction == "descending") result.reverse();
 
   return result;
 }

@@ -268,3 +268,52 @@ function handleSorting(direction) {
   }
   console.log(objectArray);
 }
+
+// Split the array into two until it has only one remaining
+function mergeSort(arr, direction) {
+  if (arr.length <= 1) return arr;
+
+  let middleIndex = Math.floor(arr.length / 2);
+  let leftArr = arr.slice(middleIndex);
+  let rightArr = arr.slice(0, middleIndex);
+  console.log(rightArr, leftArr);
+
+  leftArr = mergeSort(leftArr);
+  rightArr = mergeSort(rightArr);
+  return merge(leftArr, rightArr, direction);
+}
+
+// Merge the array according to its value, and list with the certain direction
+function merge(a1, a2, direction) {
+  result = [];
+
+  let i = 0;
+  let j = 0;
+
+  // Compare and put the smaller one into the array until one of them finish
+  while (i < a1.length && j < a2.length) {
+    if (a1[i] < a2[j]) {
+      result.push(a1[i]);
+      i++;
+    } else {
+      result.push(a2[j]);
+      j++;
+    }
+  }
+
+  // Put the remaining elements into the array
+  while (i <= a1.length - 1) {
+    result.push(a1[i]);
+    i++;
+  }
+
+  // Put the remaining elements into the array
+  while (j <= a2.length - 1) {
+    result.push(a2[j]);
+    j++;
+  }
+
+  if (direction == "descending") result.reverse();
+
+  return result;
+}

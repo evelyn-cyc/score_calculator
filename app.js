@@ -233,11 +233,14 @@ asBtn.addEventListener("click", () => {
 
 // Organize the objectArray which includes the converted grade number
 function handleSorting(direction) {
+  let container = document.querySelector(".all-inputs");
   let graders = document.querySelectorAll(".grader");
   let objectArray = [];
+  let emptyForm = [];
 
   // Put forms with data into an Object array
   for (let i = 0; i < graders.length; i++) {
+    let formRef = graders[i].closest("form");
     let class_name = graders[i].querySelector(".class-category").value;
     let class_number = graders[i].querySelector(".class-number").value;
     let class_credit = graders[i].querySelector(".class-credits").value;
@@ -252,12 +255,15 @@ function handleSorting(direction) {
       )
     ) {
       let class_object = {
+        formRef,
         class_name,
         class_number,
         class_credit,
         class_grade,
       };
       objectArray.push(class_object);
+    } else {
+      emptyForm.push(formRef);
     }
   }
 
@@ -271,6 +277,8 @@ function handleSorting(direction) {
   objectArray = mergeSort(objectArray);
   if (direction == "descending") objectArray.reverse();
   console.log(objectArray);
+
+  updateForms(container, objectArray, emptyForm);
 }
 
 // Split the array into two until it has only one remaining
@@ -315,4 +323,32 @@ function merge(a1, a2) {
   }
 
   return result;
+}
+
+// Manage the forms update display and animation
+function updateForms(container, sortedArray, emptyForm) {
+  let lackGradeForm = [];
+
+  container.querySelectorAll("form").forEach((form) => {
+    form.classList.remove("scaleUp");
+    form.style.animation = "none";
+  });
+
+  sortedArray.forEach((item) => {
+    if (item.class_grade == "") {
+      lackGradeForm.push(item);
+    } else {
+      container.appendChild(item.formRef);
+    }
+  });
+
+  // Sort the form with data but lack grade following
+  lackGradeForm.forEach((item) => {
+    container.appendChild(item.formRef);
+  });
+
+  // Sort the completely empty form at the end
+  emptyForm.forEach((formRef) => {
+    container.appendChild(formRef);
+  });
 }
